@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/script.js' %}"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        width: 80%;
+    }
+
+    .gold {
+        display: flex;
+    }
+
+    .gold2 p {
+        margin: 5px;
+    }
+
+    .gold2 {
+        margin: 5px;
+        border: 2px solid black;
+        text-align: center;
+    }
+
+    button{
+        margin: 20px;
+    }
+    .num{
+        border: 2px black solid;
+        width: 60px;
+    }
+</style>
+
+<body>
+    <div class="gold">
+        <h3>Your gold : </h3><div><h3 class="num">{{request.session.gold}}</h3></div>
+    </div>
+    <div class="gold">
+        <div class="gold2"><form action="/check"  method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="tye"  value="farm">
+            <h3>Farm</h3>
+            <p>(earns 10-20 gold)</p>
+            <button>Find Gold!</button>
+        </form></div>
+        <div class="gold2"><form action="/check"  method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="tye" value="cave">
+            <h3>Cave</h3>
+            <p>(earns 10-20 gold)</p><button>Find Gold!</button></form>
+        </div>
+        <div class="gold2"><form action="/check"  method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="tye" value="house">
+            <h3>House</h3>
+            <p>(earns 10-20 gold)</p><button>Find Gold!</button></form>
+        </div>
+        <div class="gold2"><form action="/check"  method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="tye" value="quest">
+            <h3>quest</h3>
+            <p>(earns/takes 0-50 gold)</p><button>Find Gold!</button></form>
+        </div>
+    </div>
+    <div>
+        <h3>Activities:</h3>
+        <div><p>{{request.session.acti}}</p></div>
+    </div>
+</body>
+
+</html>
